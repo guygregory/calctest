@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scientific Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="description" content="A scientific calculator web app, optimized for iPhone." />
+  <meta name="theme-color" content="#1c1c1e" />
+  <!-- iOS "Add to Home Screen" support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Calc" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="calculator" role="application" aria-label="Scientific calculator">
+    <div class="display" id="display">
+      <div class="expression" id="expression" aria-live="polite"></div>
+      <div class="result" id="result" aria-live="polite">0</div>
+      <div class="status">
+        <span id="angleMode">DEG</span>
+        <span id="secondMode" class="hidden">2nd</span>
+        <span id="memoryIndicator" class="hidden">M</span>
+      </div>
+    </div>
+
+    <div class="keys" id="keys">
+      <!-- Row 1: scientific -->
+      <button type="button" class="key sci" data-action="toggle-2nd">2nd</button>
+      <button type="button" class="key sci" data-action="toggle-angle">DEG</button>
+      <button type="button" class="key sci" data-action="func" data-func="sin">sin</button>
+      <button type="button" class="key sci" data-action="func" data-func="cos">cos</button>
+      <button type="button" class="key sci" data-action="func" data-func="tan">tan</button>
+
+      <!-- Row 2: scientific -->
+      <button type="button" class="key sci" data-action="func" data-func="ln">ln</button>
+      <button type="button" class="key sci" data-action="func" data-func="log">log</button>
+      <button type="button" class="key sci" data-action="func" data-func="sqrt">√</button>
+      <button type="button" class="key sci" data-action="op" data-op="^">x^y</button>
+      <button type="button" class="key sci" data-action="square">x²</button>
+
+      <!-- Row 3: scientific -->
+      <button type="button" class="key sci" data-action="paren" data-paren="(">(</button>
+      <button type="button" class="key sci" data-action="paren" data-paren=")">)</button>
+      <button type="button" class="key sci" data-action="factorial">n!</button>
+      <button type="button" class="key sci" data-action="const" data-const="pi">π</button>
+      <button type="button" class="key sci" data-action="const" data-const="e">e</button>
+
+      <!-- Row 4: top of standard pad -->
+      <button type="button" class="key util" data-action="clear">AC</button>
+      <button type="button" class="key util" data-action="backspace">⌫</button>
+      <button type="button" class="key util" data-action="percent">%</button>
+      <button type="button" class="key op" data-action="op" data-op="/">÷</button>
+      <button type="button" class="key op" data-action="op" data-op="*">×</button>
+
+      <!-- Digits and ops -->
+      <button type="button" class="key num" data-action="digit" data-digit="7">7</button>
+      <button type="button" class="key num" data-action="digit" data-digit="8">8</button>
+      <button type="button" class="key num" data-action="digit" data-digit="9">9</button>
+      <button type="button" class="key op" data-action="op" data-op="-">−</button>
+      <button type="button" class="key sci" data-action="negate">±</button>
+
+      <button type="button" class="key num" data-action="digit" data-digit="4">4</button>
+      <button type="button" class="key num" data-action="digit" data-digit="5">5</button>
+      <button type="button" class="key num" data-action="digit" data-digit="6">6</button>
+      <button type="button" class="key op" data-action="op" data-op="+">+</button>
+      <button type="button" class="key sci" data-action="mem" data-mem="mc">MC</button>
+
+      <button type="button" class="key num" data-action="digit" data-digit="1">1</button>
+      <button type="button" class="key num" data-action="digit" data-digit="2">2</button>
+      <button type="button" class="key num" data-action="digit" data-digit="3">3</button>
+      <button type="button" class="key sci" data-action="mem" data-mem="mplus">M+</button>
+      <button type="button" class="key sci" data-action="mem" data-mem="mminus">M−</button>
+
+      <button type="button" class="key num zero" data-action="digit" data-digit="0">0</button>
+      <button type="button" class="key num" data-action="dot">.</button>
+      <button type="button" class="key sci" data-action="mem" data-mem="mr">MR</button>
+      <button type="button" class="key equals" data-action="equals">=</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
