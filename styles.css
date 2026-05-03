@@ -1,0 +1,165 @@
+:root {
+  --bg: #000;
+  --display-bg: #1c1c1e;
+  --num-bg: #333335;
+  --num-bg-active: #4d4d50;
+  --op-bg: #ff9f0a;
+  --op-bg-active: #ffb340;
+  --util-bg: #a5a5a5;
+  --util-bg-active: #d4d4d4;
+  --sci-bg: #2c2c2e;
+  --sci-bg-active: #4a4a4d;
+  --text: #fff;
+  --util-text: #000;
+  --accent: #0a84ff;
+  --gap: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  /* iPhone safe areas */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.calculator {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* Display */
+.display {
+  background: var(--display-bg);
+  border-radius: 16px;
+  padding: 16px 18px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+  overflow: hidden;
+}
+
+.expression {
+  font-size: 1rem;
+  color: #8e8e93;
+  min-height: 1.2em;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.result {
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1.1;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  color: #8e8e93;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status .hidden {
+  display: none;
+}
+
+/* Keypad */
+.keys {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+  flex: 1 1 auto;
+}
+
+.key {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  background: var(--num-bg);
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 0;
+  cursor: pointer;
+  min-height: 56px;
+  transition: background-color 0.08s ease, transform 0.05s ease;
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+.key:active,
+.key.pressed {
+  transform: scale(0.97);
+}
+
+.key.num { background: var(--num-bg); }
+.key.num:active, .key.num.pressed { background: var(--num-bg-active); }
+
+.key.op { background: var(--op-bg); color: #fff; font-size: 1.7rem; }
+.key.op:active, .key.op.pressed { background: var(--op-bg-active); }
+.key.op.active-op { background: #fff; color: var(--op-bg); }
+
+.key.util { background: var(--util-bg); color: var(--util-text); }
+.key.util:active, .key.util.pressed { background: var(--util-bg-active); }
+
+.key.sci { background: var(--sci-bg); font-size: 1.05rem; }
+.key.sci:active, .key.sci.pressed { background: var(--sci-bg-active); }
+.key.sci.toggled { background: var(--accent); color: #fff; }
+
+.key.equals {
+  background: var(--op-bg);
+  color: #fff;
+  font-size: 1.7rem;
+}
+.key.equals:active, .key.equals.pressed { background: var(--op-bg-active); }
+
+.key.zero {
+  grid-column: span 2;
+  border-radius: 999px;
+  text-align: center;
+}
+
+/* Smaller phones */
+@media (max-height: 700px) {
+  .key { min-height: 48px; font-size: 1.25rem; }
+  .key.sci { font-size: 0.95rem; }
+  .result { font-size: 2.2rem; }
+  .display { min-height: 96px; padding: 12px 14px; }
+}
+
+@media (max-width: 360px) {
+  .calculator { padding: 8px; gap: 8px; }
+  .key { font-size: 1.1rem; min-height: 44px; }
+  .key.sci { font-size: 0.85rem; }
+}
